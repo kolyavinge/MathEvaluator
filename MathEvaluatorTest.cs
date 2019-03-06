@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathEvaluator
 {
@@ -63,8 +59,8 @@ namespace MathEvaluator
         [TestMethod]
         public void Eval_61()
         {
-            var result = _mathEvaluator.Eval("2*3/6 + 1");
-            Assert.AreEqual(2.0, result);
+            var result = _mathEvaluator.Eval("2*3 + 1");
+            Assert.AreEqual(7.0, result);
         }
 
         [TestMethod]
@@ -86,6 +82,20 @@ namespace MathEvaluator
         {
             var result = _mathEvaluator.Eval("(1+2)*(2+3)+(3+4)");
             Assert.AreEqual(22.0, result);
+        }
+
+        [TestMethod]
+        public void Eval_10()
+        {
+            var result = _mathEvaluator.Eval("(1+2)*3");
+            Assert.AreEqual(9.0, result);
+        }
+
+        [TestMethod]
+        public void Eval_11()
+        {
+            var result = _mathEvaluator.Eval("0.5*(1+2)*4");
+            Assert.AreEqual(6.0, result);
         }
     }
 

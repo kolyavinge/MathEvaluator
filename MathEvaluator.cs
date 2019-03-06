@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathEvaluator
 {
@@ -46,13 +43,20 @@ namespace MathEvaluator
 
         private void Exp2(ref double result)
         {
+            if (_token.Kind == TokenKind.OpenBracket)
+            {
+                NextToken();
+                Exp1(ref result);
+                if (_token.Kind == TokenKind.CloseBracket) NextToken();
+                else throw new MathEvaluatorException();
+            }
             Atom(ref result);
             if (_token.Kind == TokenKind.Mul || _token.Kind == TokenKind.Div)
             {
                 var op = _token;
                 NextToken();
                 double right = 0;
-                Exp1(ref right);
+                Exp2(ref right);
                 if (op.Kind == TokenKind.Mul) result *= right;
                 else if (op.Kind == TokenKind.Div) result /= right;
             }
