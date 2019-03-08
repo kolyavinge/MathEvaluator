@@ -22,13 +22,6 @@ namespace MathEvaluator
 
         private void Exp1(ref double result)
         {
-            if (_token.Kind == TokenKind.OpenBracket)
-            {
-                NextToken();
-                Exp1(ref result);
-                if (_token.Kind == TokenKind.CloseBracket) NextToken();
-                else throw new MathEvaluatorException();
-            }
             Exp2(ref result);
             if (_token.Kind == TokenKind.Add || _token.Kind == TokenKind.Sub)
             {
